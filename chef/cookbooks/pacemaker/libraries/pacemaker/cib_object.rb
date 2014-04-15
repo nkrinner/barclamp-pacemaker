@@ -1,4 +1,5 @@
 require 'mixlib/shellout'
+require 'shellwords'
 
 module Pacemaker
   class CIBObject
@@ -142,6 +143,10 @@ module Pacemaker
       definition_string \
         .gsub('\\') { '\\\\' } \
         .gsub("'")  { "\\'" }
+    end
+
+    def escaped_definition_string
+      Shellwords.join(Shellwords.split(definition_string))
     end
 
     def configure_command
