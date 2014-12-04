@@ -40,6 +40,9 @@ listen  admin-stats <%= node[:haproxy][:stats][:enabled] ? node[:haproxy][:stats
     <% if content[:use_ssl] -%>
        mode tcp
        balance source
+
+       timeout client 2s
+       timeout server 2s
     <% else -%>
 	mode <%= content[:mode] %>
     <% end -%>
