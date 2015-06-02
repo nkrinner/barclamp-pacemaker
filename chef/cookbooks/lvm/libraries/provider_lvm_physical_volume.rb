@@ -41,6 +41,7 @@ class Chef
       def action_create
         physical_volumes = []
         cmd = shell_out("pvdisplay")
+        Chef::log.info("DEBUG DEBUG nkr: pvdisplay output #{cmd}")
         cmd.error!
         cmd.stdout.split("\n").each do |line|
           args = line.split()
@@ -53,6 +54,7 @@ class Chef
         else
           Chef::Log.info "Creating physical volume '#{new_resource.name}'"
           cmd = shell_out("pvcreate #{new_resource.name}")
+          Chef::log.info("DEBUG DEBUG nkr: pvcreate output #{cmd}")
           cmd.error!
           new_resource.updated_by_last_action(true)
         end
