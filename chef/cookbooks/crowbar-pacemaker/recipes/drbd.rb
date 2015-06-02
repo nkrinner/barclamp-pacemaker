@@ -26,6 +26,7 @@ claimed_disks = BarclampLibrary::Barclamp::Inventory::Disk.claimed(node, claim_s
 
 claimed_disks.each do |disk|
   Chef::Log.info("DEBUG DEBUK nkr: Claimed disk: #{disk}")
+end
 
 if claimed_disks.empty? and not unclaimed_disks.empty?
   unclaimed_disks.each do |disk|
